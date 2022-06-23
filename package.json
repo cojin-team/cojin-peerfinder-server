@@ -1,0 +1,23 @@
+{
+  "name": "cojin-peerfinder-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cojin-team/cojin-peerfinder-server.git"
+  },
+  "author": "Omicron166",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cojin-team/cojin-peerfinder-server/issues"
+  },
+  "homepage": "https://github.com/cojin-team/cojin-peerfinder-server",
+  "dependencies": {
+    "express": "4.18.1"
+  }
+}
