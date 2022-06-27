@@ -1,4 +1,5 @@
 var fs = require('fs')
+var peerCheck = require('./peercheck')
 
 class Database {
     constructor (file) {
@@ -9,13 +10,24 @@ class Database {
         }
         
         this.file = file
-        setInterval((db, file) => {
+        setInterval(async (db, file) => {
+            // Check the peers
+            for (let index = 0; index < db.peers.length; index++) {
+                const peer = db.peers[index];
+                var host = peer.split(':')[0]
+                var port = peer.split(':')[1]
+                if (!await peerCheck(host, port)) {
+                    db.peers.splice(
+                        db.peers.indexOf(peer),
+                        1
+                    )
+                    console.log('Peer ' + peer + ' deleted from db')
+                }
+            }
+
             // Save the db
             fs.writeFileSync(file, JSON.stringify(db))
-
-            // Check the peers
-            // not implemented yet
-
+            
         }, 1000 * 10, this.db, this.file)
     }
 
