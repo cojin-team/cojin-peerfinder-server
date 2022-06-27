@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var Database = require('../services/database.js')
 
 router.use(bodyParser.json())
-var db = new Database('.env') // This file is not accesible on public glitch projects
+var db = new Database(process.env.dbpath)
 if (!db.db.peers) db.db.peers = []
 
 router.get('/ping', (req, res) => {

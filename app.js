@@ -1,6 +1,8 @@
 var express = require('express')
 var app = express()
 
+if (!process.env.dbpath) require('dotenv').config()
+
 app.use('/',
     require('./src/routes/api.js')
 )
