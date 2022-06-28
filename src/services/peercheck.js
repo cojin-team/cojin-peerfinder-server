@@ -18,17 +18,8 @@ function connectAsync(host, port) {
 
 module.exports = connectAsync
 
-/* examples
-connectAsync('google.com', 80).then((socket) => {
-    socket.destroy()
-    console.log('1 open')
-}).catch((err) => {
-    console.log('1 closed')
-})
-
-connectAsync('127.0.0.1', 8077).then((socket) => {
-    socket.destroy()
-    console.log('2 open')
-}).catch((err) => {
-    console.log('2 closed')
+/* Example
+connectAsync('google.com', 80).then((open) => {
+    if(open) console.log('Port open')
+    else console.log('Port closed')
 }) */
