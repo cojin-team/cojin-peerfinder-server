@@ -10,7 +10,7 @@ class Database {
         }
         
         this.file = file
-        setInterval(async (db, file) => {
+        this.saver = setInterval(async (db, file) => {
             // Check the peers
             for (let index = 0; index < db.peers.length; index++) {
                 const peer = db.peers[index];
@@ -41,6 +41,10 @@ class Database {
         } finally {
             this.db = data
         }
+    }
+
+    close () {
+        clearInterval(this.saver)
     }
 }
 
