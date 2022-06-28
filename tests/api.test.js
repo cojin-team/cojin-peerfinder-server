@@ -50,6 +50,6 @@ test('/getpeers endpoint test', async () => {
 // Clear Sandbox
 afterAll(() => {
     process.server.close()
-    process.env.dbsaver()
+    clearInterval(process.env.dbsaver)
     fs.rmSync(process.env.dbpath)
 })

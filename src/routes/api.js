@@ -5,7 +5,7 @@ var Database = require('../services/database.js')
 router.use(bodyParser.json())
 var db = new Database(process.env.dbpath)
 if (!db.db.peers) db.db.peers = []
-process.env.dbsaver = db.close
+process.env.dbsaver = db.saver
 
 router.get('/ping', (req, res) => {
     res.send('pong').end()

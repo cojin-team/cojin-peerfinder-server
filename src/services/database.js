@@ -10,6 +10,8 @@ class Database {
         }
         
         this.file = file
+
+        //      Peercheck & saver routine           //
         this.saver = setInterval(async (db, file) => {
             // Check the peers
             for (let index = 0; index < db.peers.length; index++) {
@@ -41,10 +43,6 @@ class Database {
         } finally {
             this.db = data
         }
-    }
-
-    close () {
-        clearInterval(this.saver)
     }
 }
 
