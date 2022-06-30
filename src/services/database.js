@@ -46,4 +46,8 @@ class Database {
     }
 }
 
-module.exports = Database
+var db = new Database(process.env.dbpath)
+if (!db.db.peers) db.db.peers = []
+process.env.dbsaver = db.saver
+
+module.exports = db
