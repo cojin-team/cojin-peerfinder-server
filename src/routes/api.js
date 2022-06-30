@@ -1,6 +1,7 @@
 var router = require('express').Router()
 var bodyParser = require('body-parser')
 var db = require('../services/database.js')
+var connect = require('../services/peercheck.js')
 
 router.use(bodyParser.json())
 
@@ -16,17 +17,29 @@ router.get('/getpeers', (req, res) => {
     res.json(selection)
 })
 
-router.post('/postpeer', (req, res) => {
+router.post('/postpeer', async (req, res) => {
     if (!req.body.peer || typeof req.body.peer != 'string') {
         // return format error
         res.status(500).send('Invalid JSON format')
         res.end()
         return
     }
-    // save the peer in the database
+    // return response
+    res.sendStatus(200).end()
+
+    // peer checking
+    /// peer in database?
+    if (req.body.peer in db.db.peers) return
+    /// peer online?
+    if (!await connect(
+            req.body.peer.split(':')[0], // host
+            req.body.peer.split(':')[1]  // port
+        )
+    ) return
+
+    // add peer to database
     console.log('New peer: ' + req.body.peer)
     db.db.peers.push(req.body.peer)
-    res.sendStatus(200).end()
 })
 
 module.exports = router
