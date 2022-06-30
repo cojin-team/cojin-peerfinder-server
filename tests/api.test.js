@@ -1,4 +1,3 @@
-const { response } = require('express')
 var express = require('express')
 var app = express()
 var fs = require('fs')
