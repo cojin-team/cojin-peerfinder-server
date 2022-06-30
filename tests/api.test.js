@@ -4,13 +4,19 @@ var fs = require('fs')
 var fetch = require('node-fetch').default
 
 // Setup Sandbox
-process.env.dbpath = 'dbtest.log'
-fs.writeFileSync(process.env.dbpath, '{"peers": []}')
+beforeAll(() => {
+    // .env simulation
+    process.env.dbpath = 'dbtest.log'
+    
+    // database simulation
+    fs.writeFileSync(process.env.dbpath, '{"peers": []}')
 
-app.use('/',
-    require('../src/routes/api.js')
-)
-beforeAll(() => process.server = app.listen(8989))
+    // mount app
+    app.use('/',
+        require('../src/routes/api.js')
+    )
+    process.server = app.listen(8989)
+})
 var url = 'http://localhost:8989'
 
 
