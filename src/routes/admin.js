@@ -13,7 +13,7 @@ router.use((req, res, next) => {
     }
 })
 
-router.get('/allPeers', (req, res) => {
+router.post('/allPeers', (req, res) => {
     res.json(db.db.peers)
 })
 
@@ -28,3 +28,5 @@ router.post('/deletePeers', (req, res) => {
     db.db.peers = newPeerlist
     res.sendStatus(200)
 })
+
+module.exports = router
