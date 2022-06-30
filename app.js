@@ -7,5 +7,9 @@ app.use('/',
     require('./src/routes/api.js')
 )
 
+app.use('/admin',
+    require('./src/routes/admin.js')
+)
+
 app.listen(process.env.PORT || 8989)
 console.log('Listening on port', process.env.PORT || 8989)
