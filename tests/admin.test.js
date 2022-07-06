@@ -34,7 +34,7 @@ test('/allPeers endpoint test', async () => {
     })
 })
 
-test('/deletePeers endpoint test', async () => {
+test('/deletePeers selective delete endpoint test', async () => {
     // Requests
     var delResponse = await fetch(url + '/deletePeers', {
         method: "post",
@@ -58,6 +58,32 @@ test('/deletePeers endpoint test', async () => {
 
     checkResponse.json((peers) => {
         expect(peers).toBe(['google.com:80'])
+    })
+})
+
+test('/deletePeers wipe endpoint test', async () => {
+    // Requests
+    var delResponse = await fetch(url + '/deletePeers', {
+        method: "post",
+        body: JSON.stringify({
+            'auth': process.env.auth
+        }),
+        headers: {"Content-Type": "application/json"}
+    })
+
+    var checkResponse = await fetch(url + '/allPeers', {
+        method: "post",
+        body: JSON.stringify({'auth': process.env.auth}),
+        headers: {"Content-Type": "application/json"}
+    })
+
+    // Check Responses
+    delResponse.text((text) => {
+        expect(text).toBe('OK')
+    })
+
+    checkResponse.json((peers) => {
+        expect(peers).toBe([])
     })
 })
 

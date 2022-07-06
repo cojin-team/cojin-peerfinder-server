@@ -19,8 +19,7 @@ router.post('/allPeers', (req, res) => {
 
 router.post('/deletePeers', (req, res) => {
     if (!req.body.peers) {
-        res.status(500).send('Invalid JSON format')
-        res.end()
+        db.db.peers = []
     }
     var newPeerlist = db.db.peers.filter((peer) => {
         return !peer in req.body.peers
