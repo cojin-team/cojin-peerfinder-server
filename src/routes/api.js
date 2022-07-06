@@ -29,7 +29,12 @@ router.post('/postpeer', async (req, res) => {
 
     // peer checking
     /// peer in database?
-    if (req.body.peer in db.db.peers) return
+    var found = db.db.peers.find((element) => {
+        if (element == req.body.peer) return true
+    })
+
+    if (found == req.body.peer) return
+
     /// peer online?
     if (!await connect(
             req.body.peer.split(':')[0], // host
