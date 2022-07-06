@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "npx jest",
-    "dev": "nodemon app.js"
+    "dev": "npx nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "jest": "28.1.1",
-    "node-fetch": "2.6.7"
+    "node-fetch": "2.6.7",
+    "nodemon": "2.0.19"
   }
 }
