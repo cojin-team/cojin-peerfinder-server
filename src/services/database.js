@@ -30,7 +30,7 @@ class Database {
             // Save the db
             fs.writeFileSync(file, JSON.stringify(db))
             
-        }, 1000 * 30, this.db, this.file)
+        }, 1000 * Number(process.env.dbwriteInterval), this.db, this.file)
     }
 
     load (file) {

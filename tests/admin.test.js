@@ -5,11 +5,12 @@ var fetch = require('node-fetch').default
 
 // Setup Sandbox
 beforeAll(() => {
-    // .env simulation
+    // .env emulation
     process.env.dbpath = 'dbtest.log'
+    process.env.dbwriteInterval = '30'
     process.env.auth = 'test'
     
-    // database simulation
+    // database emulation
     fs.writeFileSync(process.env.dbpath, '{"peers": ["google.com:80", "google.com:443"]}')
 
     // mount app

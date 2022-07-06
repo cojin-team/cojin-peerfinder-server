@@ -7,6 +7,7 @@ var fetch = require('node-fetch').default
 beforeAll(() => {
     // .env simulation
     process.env.dbpath = 'dbtest.log'
+    process.env.dbwriteInterval = '30'
     
     // database simulation
     fs.writeFileSync(process.env.dbpath, '{"peers": []}')
