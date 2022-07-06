@@ -6,10 +6,10 @@ router.use(bodyParser.json())
 
 // Admin authentication middleware
 router.use((req, res, next) => {
-    if (!req.body.auth == process.env.auth) {
-        res.sendStatus(403).end()
-    } else {
+    if (req.body.auth === process.env.auth) {
         next()
+    } else {
+        res.sendStatus(403).end()
     }
 })
 
