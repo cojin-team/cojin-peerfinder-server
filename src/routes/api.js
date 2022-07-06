@@ -11,7 +11,14 @@ router.get('/ping', (req, res) => {
 
 router.get('/getpeers', (req, res) => {
     var selection = []
-    for (let i = 0; i < 5; i++) { // select the first 4 peers
+    
+    if (db.db.peers.length < 5) {
+        var index = db.db.peers.length
+    } else {
+        var index = 5
+    }
+
+    for (let i = 0; i < index; i++) { // select the first 4 peers
         selection.push(db.db.peers[i])
     }
     res.json(selection)
